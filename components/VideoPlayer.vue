@@ -3,7 +3,7 @@
     <iframe
       width="100%"
       height="100%"
-      :src="'https://www.youtube.com/embed/zmq2zu-UsRk'"
+      :src="src"
       title="YouTube video player"
       frameborder="0"
       allow="
@@ -20,7 +20,14 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface Props {
+  src?: string;
+}
+withDefaults(defineProps<Props>(), {
+  src: 'https://www.youtube.com/embed/zmq2zu-UsRk',
+});
+</script>
 
 <style scoped>
 .video-container {
