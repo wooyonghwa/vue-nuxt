@@ -8,21 +8,17 @@
             <q-icon name="star" size="16px" color="orange" />
             <span>{{ course?.rating }}</span>
           </span>
-          <span> {{course?.reviewsCount}}개의 수강평 </span>
+          <span> {{ course?.reviewsCount }}개의 수강평 </span>
           <span>&middot;</span>
-          <span>{{course?.studentCount}}명의 수강생</span>
+          <span>{{ course?.studentCount }}명의 수강생</span>
           <q-space />
-          <a
-            class="text-bold"
-            :href="course?.reviewsUrl"
-            target="_blank"
-          >
+          <a class="text-bold" :href="course?.reviewsUrl" target="_blank">
             수강평 보기
           </a>
         </div>
       </template>
       <div class="q-mb-md">
-        <VideoPlayer :src="course?.video"/>
+        <VideoPlayer :src="course?.video" />
       </div>
       <div class="row q-col-gutter-md">
         <div class="col-6">
@@ -49,6 +45,29 @@
       <p class="q-mt-lg text-grey-8">
         {{ course?.content }}
       </p>
+      <template #footer>
+        <q-btn
+          v-if="prevCourse"
+          label="이전 강의"
+          color="primary"
+          unelevated
+          :to="prevCourse.path"
+        />
+        <q-btn
+          label="쿼리 추가"
+          color="dark"
+          unelevated
+          :to="{ path: $route.path, query: { timestamp: Date.now() } }"
+        />
+        <q-space />
+        <q-btn
+          v-if="nextCourse"
+          label="다음 강의"
+          color="primary"
+          unelevated
+          :to="nextCourse.path"
+        />
+      </template>
     </AppCard>
   </div>
 </template>
@@ -56,8 +75,11 @@
 <script setup lang="ts">
 const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
-const {course} = useCourse(courseSlug);
-
+const { course, prevCourse, nextCourse } = useCourse(courseSlug);
+console.log('[courseSlug].vue 컴포넌트 setup hooks');
+definePageMeta({
+  // key: (route) => route.fullPath,
+});
 </script>
 
 <style scoped></style>
