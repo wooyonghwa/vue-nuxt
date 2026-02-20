@@ -1,3 +1,4 @@
+<!-- about 페이지: /about과 /about-us 경로를 모두 지원한다 -->
 <template>
   <q-page padding>
     <div class="q-my-xl text-center">
@@ -9,4 +10,8 @@
   </q-page>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  alias: ["/about-us"],
+});
+</script>
