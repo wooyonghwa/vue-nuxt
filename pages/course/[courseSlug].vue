@@ -107,6 +107,7 @@ definePageMeta({
   pageType: 'dd',
   keepalive: true,
   alias: ['/lecture/:courseSlug'],
+  // layout: 'same-layout',
 });
 console.log('[route.meta]', route.meta);
 
