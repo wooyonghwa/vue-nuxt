@@ -24,7 +24,7 @@
     "nuxt": "^3.9.0",
     "nuxt-quasar-ui": "^3.0.0",
     "prettier": "^3.1.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.0.0",
     "vue": "^3.4.3",
     "vue-router": "^4.2.5",
     "vue-tsc": "^1.8.27"
