@@ -1,4 +1,5 @@
 import type { Course } from '~/types/course';
+
 const courses: Course[] = [
   {
     courseSlug: 'html-css',

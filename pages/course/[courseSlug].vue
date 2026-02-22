@@ -42,7 +42,9 @@
           />
         </div>
       </div>
-      <p class="q-mt-lg text-grey-8">{{ course?.content }}</p>
+      <p class="q-mt-lg text-grey-8">
+        {{ course?.content }}
+      </p>
       <q-separator class="q-mb-lg" />
       <q-form class="q-gutter-y-md">
         <q-btn
@@ -101,13 +103,14 @@ console.log('[courseSlug].vue 컴포넌트 setup hooks');
 // const title = ref('');
 definePageMeta({
   key: (route) => route.fullPath,
-  // title: title.value,
-  title: 'My home page',
-  pageType: '',
+  title: 'title',
+  pageType: 'dd',
   keepalive: true,
   alias: ['/lecture/:courseSlug'],
   // layout: 'same-layout',
 });
+console.log('[route.meta]', route.meta);
+
 const memo = ref('');
 const completed = ref(false);
 

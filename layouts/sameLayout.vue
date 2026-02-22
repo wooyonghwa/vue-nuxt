@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf" class="bg-grey-2">
+  <q-layout view="hHh lpR fFf">
     <q-page-container :style="pageContainerStyle">
       <slot></slot>
     </q-page-container>

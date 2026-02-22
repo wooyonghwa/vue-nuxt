@@ -1,8 +1,10 @@
 <template>
   <q-page padding>
-    <div class="q-my-xl tex-center">
-      <div class="text-h4">All Courses</div>
-      <p class="q-mt-sm text-grey-8">웹 개발 입문부터 실전까지 학습해보세요!</p>
+    <div class="q-my-xl text-center">
+      <div class="text-h4">All courses</div>
+      <div class="p-mt-sm text-grey-8">
+        웹 개발 입문부터 학습까지 학습해보세요!
+      </div>
     </div>
     <div class="row q-col-gutter-lg">
       <div

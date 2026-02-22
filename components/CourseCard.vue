@@ -17,8 +17,8 @@ interface Props {
   title: string;
   subtitle: string;
 }
-defineProps<Props>();
 
+defineProps<Props>();
 defineEmits<{
   click: [];
 }>();

@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import type { LayoutKey } from '#build/types/layouts';
-
 const changePageLayout = (layout: LayoutKey) => {
   setPageLayout(layout);
 };

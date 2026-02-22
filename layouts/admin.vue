@@ -4,12 +4,11 @@
       <q-header elevated class="bg-primary text-white">
         <q-toolbar>
           <q-toolbar-title>Vue & Nuxt Mastery Admin</q-toolbar-title>
-          <q-separator dark vertical />
           <NuxtLink v-slot="{ navigate }" custom to="/admin/override-layout">
             <q-btn
               stretch
               flat
-              label="Override Layout"
+              label="Override layout"
               no-caps
               @click="navigate()"
             />
@@ -19,7 +18,7 @@
             <q-btn
               stretch
               flat
-              label="Dynamic Layout"
+              label="Dynamic layout"
               no-caps
               @click="navigate()"
             />

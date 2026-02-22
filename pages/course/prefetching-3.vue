@@ -10,7 +10,6 @@
 
 <script lang="ts">
 console.log('prefetching-3');
-export default {};
 </script>
 
 <script setup lang="ts"></script>

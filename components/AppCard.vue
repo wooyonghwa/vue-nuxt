@@ -15,7 +15,6 @@
     </q-card-actions>
   </q-card>
 </template>
-
 <script setup lang="ts">
 interface Props {
   title?: string;
