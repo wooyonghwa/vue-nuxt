@@ -52,7 +52,7 @@
           unelevated
           :outline="completed ? false : true"
           :icon="completed ? 'check' : undefined"
-          @click="completed = !completed"
+          @click="toggleComplete"
         />
         <q-input
           v-model="memo"
@@ -98,13 +98,13 @@ const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
 const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 
-if (!course) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Course not found',
-    fatal: true,
-  });
-}
+// if (!course) {
+//   throw createError({
+//     statusCode: 404,
+//     statusMessage: 'Course not found',
+//     // fatal: true,
+//   });
+// }
 
 console.log('[courseSlug].vue 컴포넌트 setup hooks');
 // const title = ref('');
@@ -113,15 +113,34 @@ definePageMeta({
   // title: title.value,
   title: 'My home page',
   pageType: '',
-  keepalive: true,
+  // keepalive: true,
   alias: ['/lecture/:courseSlug'],
   // layout: 'same-layout',
+  validate: (route) => {
+    const courseSlug = route.params.courseSlug as string;
+    const { course } = useCourse(courseSlug);
+    if (!course) {
+      // return false;
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Course not found',
+        // fatal: true,
+      });
+    }
+    return true;
+  },
 });
 const memo = ref('');
 const completed = ref(false);
 
 const movePage = async (path: string) => {
   await navigateTo(path);
+};
+
+const toggleComplete = () => {
+  // showError('에러가 발생했습니다.');
+  completed.value = !completed.value;
+  throw createError('에러가 발생했습니다.');
 };
 </script>
 
