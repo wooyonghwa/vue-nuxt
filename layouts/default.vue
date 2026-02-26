@@ -4,18 +4,42 @@
       <q-toolbar>
         <q-toolbar-title> Vue & Nuxt Mastery Class </q-toolbar-title>
         <NuxtLink v-slot="{ navigate }" custom to="/">
-          <q-btn stretch flat :label="$t('home')" no-caps @click="() => navigate()" />
+          <q-btn
+            stretch
+            flat
+            :label="$t('home')"
+            no-caps
+            @click="() => navigate()"
+          />
         </NuxtLink>
         <q-separator dark vertical />
         <NuxtLink v-slot="{ navigate }" custom to="/about">
-          <q-btn stretch flat :label="$t('about')" no-caps @click="() => navigate()" />
+          <q-btn
+            stretch
+            flat
+            :label="$t('about')"
+            no-caps
+            @click="() => navigate()"
+          />
         </NuxtLink>
         <q-separator dark vertical />
 
-        <q-btn stretch flat :label="$t('youtube')" no-caps @click="moveYoutube" />
+        <q-btn
+          stretch
+          flat
+          :label="$t('youtube')"
+          no-caps
+          @click="moveYoutube"
+        />
         <q-separator dark vertical />
         <NuxtLink v-slot="{ navigate }" custom to="/admin">
-          <q-btn stretch flat :label="$t('admin')" no-caps @click="() => navigate()" />
+          <q-btn
+            stretch
+            flat
+            :label="$t('admin')"
+            no-caps
+            @click="() => navigate()"
+          />
         </NuxtLink>
         <q-separator dark vertical />
         <q-btn-dropdown stretch flat no-caps :label="selectedLanguageName">
@@ -55,18 +79,18 @@ const moveYoutube = async () => {
 };
 
 interface Language {
-  name : string;
-  code : 'en' | 'ko'
+  name: string;
+  code: 'en' | 'ko';
 }
 
 const languages = ref<Language[]>([
-  {name : 'English', code : 'en'},
-  {name : '한국어', code : 'ko'}
-])
+  { name: 'English', code: 'en' },
+  { name: '한국어', code: 'ko' },
+]);
 
-const {locale} = useI18n();
+const { locale } = useI18n();
 
-const selectedLanguageName = computed(()=>{
-  return languages.value.find((lang) => lang.code === locale.value)?.name
-})
+const selectedLanguageName = computed(() => {
+  return languages.value.find((lang) => lang.code === locale.value)?.name;
+});
 </script>
