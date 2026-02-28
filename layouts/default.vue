@@ -58,6 +58,25 @@
             </q-item>
           </q-list>
         </q-btn-dropdown>
+        <q-separator dark vertical />
+        <NuxtLink v-slot="{ navigate }" custom to="/login">
+          <q-btn
+            stretch
+            flat
+            :label="$t('login')"
+            no-caps
+            @click="navigate()"
+          />
+        </NuxtLink>
+        <NuxtLink v-slot="{ navigate }" custom to="/">
+          <q-btn
+            stretch
+            flat
+            :label="$t('logout')"
+            no-caps
+            @click="navigate()"
+          />
+        </NuxtLink>
       </q-toolbar>
     </q-header>
     <q-page-container :style="pageContainerStyle">
