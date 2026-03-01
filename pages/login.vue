@@ -9,6 +9,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['guest-only'],
+});
+
 const handleLoginSuccess = async () => {
   const { isAdmin } = useAuthUser();
   const redirect = isAdmin.value ? '/admin' : '/';
