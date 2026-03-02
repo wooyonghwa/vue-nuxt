@@ -1,10 +1,11 @@
 import { createI18n } from 'vue-i18n';
+import { useDefaultLocale } from '~/composables/useDefaultLocale';
 
 export default defineNuxtPlugin(({ vueApp }) => {
   const i18n = createI18n({
     legacy: false,
     globalInjection: true,
-    locale: 'en',
+    locale: useDefaultLocale().value,
     messages: {
       en: {
         home: 'Home',

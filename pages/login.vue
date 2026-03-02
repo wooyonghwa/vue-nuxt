@@ -10,8 +10,8 @@
 
 <script setup lang="ts">
 const handleLoginSuccess = async () => {
-  const { isAdmin } = useAuthUser();
-  const redirect = isAdmin.value ? '/admin' : '/';
+  const isAdmin = useAdmin();
+  const redirect = isAdmin ? '/admin' : '/';
   await navigateTo(redirect);
 };
 </script>
