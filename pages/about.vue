@@ -49,6 +49,14 @@
           </div>
         </div>
       </div>
+      <div class="q-gutter-y-sm q-mt-md">
+        <div class="text-subtitle1 text-weight-bold">useCounterStore()</div>
+        <div>count: {{ count }}</div>
+        <div>doubleCount: {{ doubleCount }}</div>
+        <div>
+          <q-btn label="increment" @click="counterStore.increment()" />
+        </div>
+      </div>
     </div>
   </q-page>
 </template>
@@ -56,4 +64,7 @@
 <script setup lang="ts">
 const counter = useState<number>('counter', () => 1);
 const sameCounter = useState<number>('counter');
+
+const counterStore = useCounterStore();
+const { count, doubleCount } = storeToRefs(counterStore);
 </script>
