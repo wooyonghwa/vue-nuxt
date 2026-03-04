@@ -42,6 +42,28 @@
           />
         </NuxtLink>
         <q-separator dark vertical />
+        <NuxtLink
+          v-if="!isAuthenticated"
+          v-slot="{ navigate }"
+          custom
+          to="/login"
+        >
+          <q-btn
+            stretch
+            flat
+            :label="$t('login')"
+            no-caps
+            @click="navigate()"
+          />
+        </NuxtLink>
+        <q-btn
+          v-else
+          stretch
+          flat
+          :label="$t('logout')"
+          no-caps
+          @click="signOut()"
+        />
         <q-btn-dropdown stretch flat no-caps :label="selectedLanguageName">
           <q-list padding dense>
             <q-item
@@ -66,6 +88,9 @@
   </q-layout>
 </template>
 <script setup lang="ts">
+const authStore = useAuthStore();
+const { user: authUser, isAuthenticated } = storeToRefs(authStore);
+const { signOut } = useAuthStore();
 const pageContainerStyle = computed(() => ({
   maxWidth: '1080px',
   margin: '0 auto',
