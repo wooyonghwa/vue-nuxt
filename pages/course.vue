@@ -47,7 +47,7 @@
                 label="Reset"
                 color="positive"
                 no-caps
-                @click="error.value = null"
+                @click="clearError()"
               />
             </div>
           </template>

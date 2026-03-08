@@ -4,11 +4,11 @@
       <q-toolbar>
         <q-toolbar-title>{{ appConfig.title }}</q-toolbar-title>
         <NuxtLink v-slot="{ navigate }" custom to="/">
-          <q-btn stretch flat :label="$t('home')" no-caps @click="navigate" />
+          <q-btn stretch flat :label="$t('home')" no-caps @click="() => navigate()" />
         </NuxtLink>
         <q-separator dark vertical />
         <NuxtLink v-slot="{ navigate }" custom to="/about">
-          <q-btn stretch flat :label="$t('about')" no-caps @click="navigate" />
+          <q-btn stretch flat :label="$t('about')" no-caps @click="() => navigate()" />
         </NuxtLink>
         <q-separator dark vertical />
 
@@ -21,7 +21,7 @@
         />
         <q-separator dark vertical />
         <NuxtLink v-slot="{ navigate }" custom to="/admin">
-          <q-btn stretch flat :label="$t('admin')" no-caps @click="navigate" />
+          <q-btn stretch flat :label="$t('admin')" no-caps @click="() => navigate()" />
         </NuxtLink>
         <q-separator dark vertical />
         <q-btn-dropdown stretch flat no-caps label="English">
