@@ -60,6 +60,15 @@
           :icon="completed ? 'check' : undefined"
           @click="toggleComplete"
         />
+        <q-input
+          v-model="memo"
+          type="textarea"
+          outlined
+          dense
+          placeholder="메모를 작성해주세요."
+          rows="3"
+          autogrow
+        />
         <ClientOnly>
           <q-input
             v-model="memo"
@@ -104,15 +113,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
-const { course, prevCourse, nextCourse } = (await useCourse(courseSlug)) || {};
-
-// const title = computed(() => course?.title);
-// const description = computed(() => course?.content);
-
-useSeoMeta({
-  title: () => course?.title || '',
-  description: () => course?.content || '',
-});
+const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 
 // if (!course) {
 //   throw createError({
@@ -133,19 +134,24 @@ definePageMeta({
   alias: ['/lecture/:courseSlug'],
   // layout: 'same-layout',
   // validate: (route) => {
-  middleware: async (route) => {
+  middleware: (route) => {
     const courseSlug = route.params.courseSlug as string;
-    const { course } = (await useCourse(courseSlug)) || {};
+    const { course } = useCourse(courseSlug);
     if (!course) {
-      // return navigateTo('/');
+      return navigateTo('/');
       // return false;
-      return abortNavigation(
-        createError({
-          statusCode: 404,
-          statusMessage: 'Course not found',
-          fatal: true,
-        }),
-      );
+      // return abortNavigation(
+      //   createError({
+      //     statusCode: 404,
+      //     statusMessage: 'Course not found',
+      //     fatal: true,
+      //   }),
+      // );
+      // throw createError({
+      //   statusCode: 404,
+      //   statusMessage: 'Course not found',
+      //   // fatal: true,
+      // });
     }
     // return true;
   },
@@ -158,7 +164,6 @@ const movePage = async (path: string) => {
 };
 
 const toggleComplete = () => {
-  // $fetch('/api/error');
   // showError('에러가 발생했습니다.');
   completed.value = !completed.value;
   throw createError('에러가 발생했습니다.');

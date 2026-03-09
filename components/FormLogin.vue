@@ -5,7 +5,6 @@
     <q-input v-model="form.passwowrd" filled type="password" label="password" />
 
     <div v-if="error" class="text-red text-center">{{ error.message }}</div>
-
     <div class="q-mt-lg">
       <q-btn
         class="full-width"
@@ -35,13 +34,13 @@ const form = ref({
 const error = ref<Error | null>(null);
 const loading = ref(false);
 
-const handleLoginSubmit = async () => {
+const handleLoginSubmit = () => {
   try {
     error.value = null;
     loading.value = true;
 
     // login business logic
-    await signIn(form.value.email, form.value.passwowrd);
+    signIn(form.value.email, form.value.passwowrd);
 
     emit('success');
   } catch (err: unknown) {

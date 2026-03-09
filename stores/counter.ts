@@ -1,15 +1,10 @@
 export const useCounterStore = defineStore('counter', () => {
   const count = ref(0);
-  const name = ref('Eduardo');
+  const name = ref('yonghwa');
   const doubleCount = computed(() => count.value * 2);
   function increment() {
     count.value++;
   }
 
-  return {
-    count,
-    name,
-    doubleCount,
-    increment,
-  };
+  return { count, name, doubleCount, increment };
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-h3">{{ title }}</div>
+  <div class="text-h4">{{ title }}</div>
 </template>
 
 <script setup lang="ts">

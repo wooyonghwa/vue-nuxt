@@ -1,15 +1,26 @@
 <template>
   <q-layout view="hHh lpR fFf" class="bg-grey-2">
     <q-header elevated class="bg-dark text-white">
-      
       <q-toolbar>
-        <q-toolbar-title>{{ appConfig.title }}</q-toolbar-title>
+        <!-- <q-toolbar-title>{{ appConfig.title }}</q-toolbar-title> -->
         <NuxtLink v-slot="{ navigate }" custom to="/">
-          <q-btn stretch flat :label="$t('home')" no-caps @click="() => navigate()" />
+          <q-btn
+            stretch
+            flat
+            :label="$t('home')"
+            no-caps
+            @click="() => navigate()"
+          />
         </NuxtLink>
         <q-separator dark vertical />
         <NuxtLink v-slot="{ navigate }" custom to="/about">
-          <q-btn stretch flat :label="$t('about')" no-caps @click="() => navigate()" />
+          <q-btn
+            stretch
+            flat
+            :label="$t('about')"
+            no-caps
+            @click="() => navigate()"
+          />
         </NuxtLink>
         <q-separator dark vertical />
 
@@ -22,25 +33,15 @@
         />
         <q-separator dark vertical />
         <NuxtLink v-slot="{ navigate }" custom to="/admin">
-          <q-btn stretch flat :label="$t('admin')" no-caps @click="() => navigate()" />
+          <q-btn
+            stretch
+            flat
+            :label="$t('admin')"
+            no-caps
+            @click="() => navigate()"
+          />
         </NuxtLink>
         <q-separator dark vertical />
-        <q-btn-dropdown stretch flat no-caps label="English">
-          <q-list padding dense>
-            <q-item v-close-popup clickable :to="localePath('/', 'en')">
-              <q-item-section>
-                <q-item-label>English</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item v-close-popup clickable :to="switchLocalePath('ko')">
-              <q-item-section>
-                <q-item-label>한국어</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
-        <q-separator dark vertical />
-        <!-- <ClientOnly> -->
         <NuxtLink
           v-if="!isAuthenticated"
           v-slot="{ navigate }"
@@ -63,7 +64,22 @@
           no-caps
           @click="signOut()"
         />
-        <!-- </ClientOnly> -->
+        <q-btn-dropdown stretch flat no-caps :label="selectedLanguageName">
+          <q-list padding dense>
+            <q-item
+              v-for="{ code, name } in languages"
+              :key="code"
+              v-close-popup
+              clickable
+              :active="$i18n.locale === code"
+              @click="$i18n.locale = code"
+            >
+              <q-item-section>
+                <q-item-label>{{ name }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
     <q-page-container :style="pageContainerStyle">
@@ -79,7 +95,7 @@
 <script setup lang="ts">
 const authStore = useAuthStore();
 const { user: authUser, isAuthenticated } = storeToRefs(authStore);
-const { signOut } = authStore;
+const { signOut } = useAuthStore();
 const pageContainerStyle = computed(() => ({
   maxWidth: '1080px',
   margin: '0 auto',
@@ -92,10 +108,19 @@ const moveYoutube = async () => {
   });
 };
 
-// const { locale } = useI18n();
-const localePath = useLocalePath();
-const switchLocalePath = useSwitchLocalePath();
+interface Language {
+  name: string;
+  code: 'en' | 'ko';
+}
 
-const appConfig = useAppConfig();
-console.log('appConfig: ', appConfig);
+const languages = ref<Language[]>([
+  { name: 'English', code: 'en' },
+  { name: '한국어', code: 'ko' },
+]);
+
+const { locale } = useI18n();
+
+const selectedLanguageName = computed(() => {
+  return languages.value.find((lang) => lang.code === locale.value)?.name;
+});
 </script>
