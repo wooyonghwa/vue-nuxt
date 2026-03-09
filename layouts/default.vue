@@ -1,6 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf" class="bg-grey-2">
     <q-header elevated class="bg-dark text-white">
+      
       <q-toolbar>
         <q-toolbar-title>{{ appConfig.title }}</q-toolbar-title>
         <NuxtLink v-slot="{ navigate }" custom to="/">
